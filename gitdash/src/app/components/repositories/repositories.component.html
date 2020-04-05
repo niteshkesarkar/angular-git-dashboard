@@ -1,0 +1,75 @@
+<div class="ui container">
+  <div class="ui segment" *ngIf="loading; else data">
+    <sui-dimmer class="inverted" [(isDimmed)]="loading">
+      <div class="ui text loader">Fetching data from server!</div>
+    </sui-dimmer>
+  </div>
+  
+  <ng-template #data>
+    <sui-message class="attached warning" [isDismissable]="false" 
+    *ngIf="!loading && !repositories.length; else showData">
+      <div class="header">
+          No data found!
+      </div>
+      <p>There is no data show.</p>
+    </sui-message>
+    <ng-template #showData>
+      <table class="ui striped selectable left aligned table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Open Issues</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let repository of repositories">
+            <td>
+              <h3>
+                <a href="{{ repository.html_url }}" target="_blank" suiPopup popupHeader="Name" popupText="{{ repository.name }}">
+                {{ repository.name | ellipsis: '40' }}
+                </a>
+              </h3>
+              <div>
+                <div class="ui image label" suiPopup popupText="Owner">
+                  <img [src]="repository.owner.avatar_url">
+                  {{ repository.owner.login }}
+                  <i class="delete icon"></i>
+                </div>
+                <div class="ui label" *ngIf="repository.language"  suiPopup popupText="Language">
+                  <i class="mail icon"></i> {{ repository.language }}
+                </div>
+                <div class="ui label" *ngIf="repository.forks > 0 " >
+                  <i class="fork icon"></i> {{ repository.forks }}
+                </div>
+              </div>
+            </td>
+            <td>
+              <span suiPopup popupHeader="Description" popupText="{{ repository.description }}">{{ repository.description | ellipsis: '40' }}</span>
+            </td>
+            <td>{{ repository.open_issues_count }}</td>
+            <td>
+              <button class="ui primary basic button" (click)="goToDetails(repository)">Open</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="ui segments">
+        <div class="ui segment">
+            <sui-pagination 
+              [collectionSize]="total"
+              [pageSize]="pageSize"
+              [maxSize]="5"
+              [hasNavigationLinks]="true"
+              [hasBoundaryLinks]="false"
+              [(page)]="pageNumber"
+              (pageChange)="paginate(pageNumber)">
+        </sui-pagination>
+        </div>
+    </div>
+
+    </ng-template>
+  </ng-template>
+</div>

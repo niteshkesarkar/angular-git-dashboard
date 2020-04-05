@@ -1,0 +1,20 @@
+<div class="ui container">
+  <div class="ui segment" *ngIf="loading; else data">
+    <sui-dimmer class="inverted" [(isDimmed)]="loading">
+      <div class="ui text loader">Fetching data from server!</div>
+    </sui-dimmer>
+  </div>
+  
+  <ng-template #data>
+    <sui-message class="attached warning" [isDismissable]="false" 
+    *ngIf="!loading && !repository; else showData">
+      <div class="header">
+          No data found!
+      </div>
+      <p>There is no data show.</p>
+    </sui-message>
+    <ng-template #showData>
+      {{ repository | json}}
+    </ng-template>
+  </ng-template>
+</div>
