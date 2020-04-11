@@ -1,7 +1,6 @@
 /* tslint:disable:no-unused-variable */
 
-import {TestBed, async, inject} from '@angular/core/testing';
-import {Todo} from '../todo';
+import {TestBed, inject} from '@angular/core/testing';
 import {RepositoryService} from './repository.service';
 
 describe('RepositoryService', () => {

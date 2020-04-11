@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RepositoryService } from 'src/app/services/repository.service';
+import { RepositoryService } from 'src/app/services/index';
 
 @Component({
   selector: 'app-repository-details',

@@ -11,8 +11,7 @@ import { PullRequestsComponent } from './components/pull-requests/pull-requests.
 import { IssuesComponent } from './components/issues/issues.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import {RepositoryService} from './services/repository.service';
-import { ApiService } from './services/api.service';
+import { ApiService, RepositoryService, DashboardService } from './services/index';
 import { EllipsisPipe } from './pipes/ellipsis.pipe';
 import { RepositoryDetailsComponent } from './components/repository-details/repository-details.component';
 
@@ -33,7 +32,7 @@ import { RepositoryDetailsComponent } from './components/repository-details/repo
     AppRoutingModule,
     GoogleChartsModule.forRoot(),
   ],
-  providers: [ApiService, RepositoryService],
+  providers: [ApiService, RepositoryService, DashboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

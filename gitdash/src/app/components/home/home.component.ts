@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {TransitionController, Transition, TransitionDirection} from 'ng2-semantic-ui';
+import { DashboardService } from 'src/app/services';
+import { Repository } from 'src/app/services/interfaces/repository.interface';
+import { map, tap, take, filter } from 'rxjs/operators';
+import * as _ from 'lodash-es';
 
 @Component({
   selector: 'app-home',
@@ -8,22 +12,17 @@ import {TransitionController, Transition, TransitionDirection} from 'ng2-semanti
 })
 export class HomeComponent implements OnInit {
   public transitionController = new TransitionController();
-
-  title = 'Company Hiring Report';
+  private ready = false;
+  title = 'Open Issues More than 15)';
   type = 'ColumnChart';
-  data = [
-     ['2014', 200],
-     ['2015', 560],
-     ['2016', 280],
-     ['2017', 300],
-     ['2018', 600]
-  ];
-  columnNames = ['Year', 'India'];
+  data: any[] = [];
+  columnNames: string[];
   options = {};
-  width = 800;
+  width = 900;
   height = 500;
 
-  constructor() { }
+
+  constructor(private dashbordService: DashboardService) { }
 
   public animate(transitionName: string = 'scale') {
     this.transitionController.animate(
@@ -31,6 +30,31 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dashbordService.getRepos().pipe(
+      map(repos => {
+        return _.orderBy(repos, ['open_issues_count'], ['desc']);
+      }),
+      filter(repos => {
+        return _.remove(repos, (o) => o.open_issues_count === 0 || o.open_issues_count < 15);
+      }),
+      // tap(repos => {
+      //   console.log(repos);
+      //   return repos;
+      // })
+    ).subscribe(
+      (result) => {
+        this.columnNames = ['Repository', 'Open Issues'];
+        _.map(result, (repo) => {
+          this.data.push([
+            repo.name,
+            repo.open_issues_count]);
+        });
+        this.ready = true;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
 }

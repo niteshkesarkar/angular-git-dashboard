@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RepositoryService } from '../../services/repository.service';
+import { RepositoryService } from '../../services/index';
 import { Router } from '@angular/router';
 import * as _ from 'lodash-es';
 import { environment } from 'src/environments/environment';

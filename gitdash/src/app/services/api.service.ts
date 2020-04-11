@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 const API_URL = environment.githubApiUrl;
 const TOKEN = environment.githubToken;
@@ -21,7 +22,7 @@ export class ApiService {
     headers.set('Authorization', 'token ' + TOKEN);
   }
 
-  public get(url) {
+  public get(url): Observable<any> {
     return this.http.get<any>(API_URL + url);
   }
 

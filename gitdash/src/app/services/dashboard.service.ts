@@ -3,10 +3,10 @@ import { ApiService } from './api.service';
 import { environment } from 'src/environments/environment';
 import { Repository } from './interfaces/repository.interface';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 const ORG_NAME = environment.githubOrgName;
 const PAGE_SIZE = environment.pageSize;
+const pageNumber = 1;
 
 @Injectable({
   providedIn: 'root'
@@ -18,4 +18,8 @@ export class DashboardService {
   ) {
   }
 
+  // Simulate GET /todos
+  getRepos(): Observable<Repository[]> {
+    return this.api.get(`/orgs/${ORG_NAME}/repos?page=${pageNumber}&per_page=${PAGE_SIZE}&sort=updated&direction=desc`);
+  }
 }

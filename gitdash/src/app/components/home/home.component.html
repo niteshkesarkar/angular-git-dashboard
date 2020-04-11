@@ -4,9 +4,8 @@
 
 
 <div class="ui one column stackable grid">
-  <div class="column">
+  <div class="column" *ngIf="ready">
     <div class="ui segment">
-      <div [suiTransition]="transitionController">
         <google-chart #chart
           [title]="title"
           [type]="type"
@@ -17,7 +16,6 @@
           [height]="height"
           >
           </google-chart>
-        </div>
     </div>
   </div>
 </div>
