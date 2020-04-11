@@ -1,4 +1,4 @@
-import { writeFile } from 'fs';
+const fs = require('fs');
 const colors = require('colors');
 
 // Configure Angular `environment.ts` file path
