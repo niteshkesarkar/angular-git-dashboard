@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-const API_URL = environment.apiUrl;
-const TOKEN = environment.apiUrl;
+const API_URL = environment.githubApiUrl;
+const TOKEN = environment.githubToken;
 
 @Injectable()
 export class ApiService {

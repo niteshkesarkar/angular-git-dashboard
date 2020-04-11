@@ -4,7 +4,8 @@ import { environment } from 'src/environments/environment';
 import { Repository } from './interfaces/repository.interface';
 import { Observable } from 'rxjs';
 
-const ORG_NAME = environment.orgName;
+const ORG_NAME = environment.githubOrgName;
+const PAGE_SIZE = environment.pageSize;
 
 @Injectable()
 export class RepositoryService {
@@ -15,16 +16,16 @@ export class RepositoryService {
   }
 
   // Simulate GET /todos
-  getAllRepositories(): Observable<Repository[]> {
-    return this.api.get(`/orgs/${ORG_NAME}/repos`);
+  getAllRepositories(pageNumber): Observable<Repository[]> {
+    return this.api.get(`/orgs/${ORG_NAME}/repos?page=${pageNumber}&per_page=${PAGE_SIZE}`);
   }
 
   // Simulate GET /todos/:id
   getRepositoryById(owner: string, repositoryId: string): Observable<Repository>  {
     return this.api.get('/repos/' + owner + '/' + repositoryId);
   }
-/*
 
+/*
 // Simulate GET /todos
   getAllRepositories(pageNumber, pageSize) {
     pageNumber = pageNumber > 1 ? pageNumber : 1;

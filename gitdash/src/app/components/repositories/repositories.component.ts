@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { RepositoryService } from '../../services/repository.service';
 import { Router } from '@angular/router';
 import * as _ from 'lodash-es';
+import { environment } from 'src/environments/environment';
+
+const pageSize = environment.pageSize;
 
 @Component({
   selector: 'app-repositories',
@@ -9,11 +12,9 @@ import * as _ from 'lodash-es';
   styleUrls: ['./repositories.component.scss']
 })
 export class RepositoriesComponent implements OnInit {
-  allRepositories;
   repositories;
   loading = true;
   pageNumber = 1;
-  pageSize = 10;
   total = 0;
 
   constructor(
@@ -26,31 +27,19 @@ export class RepositoriesComponent implements OnInit {
     this.getRepositories();
   }
 
-  getRepositories() {
-    this.repositoryService
-      .getAllRepositories()
-      .subscribe(
-        (repositories) => {
-          this.allRepositories = repositories;
-          this.paginate(this.pageNumber);
-        }
-      );
+  pageChange() {
+    console.log(this.pageNumber);
   }
 
-  paginate(pageNumber) {
-    this.total = this.allRepositories.length;
-    this.repositories = _.clone(this.allRepositories);
-    console.log(this.allRepositories);
-
-    if (this.allRepositories.length === 0) {
-      this.loading = false;
-      console.log(this.total, pageNumber, this.pageSize);
-      return;
-    }
-
-    this.repositories = this.repositories.splice(pageNumber - 1 , this.pageSize - 1);
-    this.loading = false;
-    console.log(this.total, pageNumber, this.pageSize);
+  getRepositories() {
+    this.repositoryService
+      .getAllRepositories(this.pageNumber)
+      .subscribe(
+        (repositories) => {
+          this.repositories = repositories;
+          this.loading = false;
+        }
+      );
   }
 
   goToDetails(repository) {

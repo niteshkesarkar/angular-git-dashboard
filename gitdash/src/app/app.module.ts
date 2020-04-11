@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 import {SuiModule} from 'ng2-semantic-ui';
 import { RepositoriesComponent } from './components/repositories/repositories.component';
@@ -29,7 +30,8 @@ import { RepositoryDetailsComponent } from './components/repository-details/repo
     HttpClientModule,
     SuiModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    GoogleChartsModule.forRoot(),
   ],
   providers: [ApiService, RepositoryService],
   bootstrap: [AppComponent]
