@@ -10,7 +10,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "json-server": "json-server --watch db.json",
-    "preinstall": "npm install -g angular-cli@7.3.10",
     "postinstall": "ng build && mv dist/* ."
   },
   "private": true,
