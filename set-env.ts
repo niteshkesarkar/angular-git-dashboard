@@ -1,3 +1,5 @@
+declare var require: any;
+
 const fs = require('fs');
 const colors = require('colors');
 
