@@ -2,7 +2,12 @@ const fs = require('fs');
 const colors = require('colors');
 
 // Configure Angular `environment.ts` file path
-const targetPath = './src/environments/environment.ts';
+let targetPath = '';
+if (process.env.PRODUCTION === 'true') {
+    targetPath = './src/environments/environment.prod.ts';
+} else {
+    targetPath = './src/environments/environment.ts';
+}
 
 // Load node modules
 require('dotenv').config();
