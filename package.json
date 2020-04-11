@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "json-server": "json-server --watch db.json",
-    "postinstall": "ng build"
+    "postinstall": "ng build && mv dist/* ."
   },
   "private": true,
   "dependencies": {
