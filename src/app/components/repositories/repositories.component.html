@@ -36,7 +36,7 @@
               <div class="ui label" *ngIf="repository.language"  suiPopup popupText="Language">
                 <i class="mail icon"></i> {{ repository.language }}
               </div>
-              <div class="ui label" *ngIf="repository.forks > 0 " >
+              <div class="ui label" *ngIf="repository.forks > 0 " suiPopup popupHeader="Forks" popupText="{{ repository.forks }}">
                 <i class="fork icon"></i> {{ repository.forks }}
               </div>
             </div>
@@ -44,7 +44,11 @@
           <td>
             <span suiPopup popupHeader="Description" popupText="{{ repository.description }}">{{ repository.description | ellipsis: '40' }}</span>
           </td>
-          <td>{{ repository.open_issues_count }}</td>
+          <td>
+            <span  suiPopup popupHeader="Open Issues" popupText="{{ repository.open_issues_count }}">
+              {{ repository.open_issues_count }}
+            </span>
+          </td>
           <td>
             <button class="ui primary basic button" (click)="goToDetails(repository)">Open</button>
           </td>
