@@ -9,9 +9,10 @@ import * as _ from 'lodash-es';
   styleUrls: ['./open-issues.component.scss']
 })
 export class OpenIssuesComponent implements OnInit {
-  ready = false;
-  maxOpenIssues = 20;
-  title = `Repositories having more than ${this.maxOpenIssues} forks`;
+
+  loading = true;
+  maxOpenIssues = 15;
+  title = `Repositories having more than ${this.maxOpenIssues} open issues`;
   type = 'ColumnChart';
   data: any[] = [];
   columnNames: string[];
@@ -27,12 +28,12 @@ export class OpenIssuesComponent implements OnInit {
         return _.orderBy(repos, ['open_issues_count'], ['desc']);
       }),
       filter(repos => {
-        return _.remove(repos, (o) => o.open_issues_count === 0 || o.open_issues_count < this.maxOpenIssues);
+        return _.remove(repos, (o) => o.open_issues_count === 0 || o.open_issues_count < 15);
       }),
-      // tap(repos => {
-      //   console.log(repos);
-      //   return repos;
-      // })
+      tap(repos => {
+        console.log(repos);
+        return repos;
+      })
     ).subscribe(
       (result) => {
         this.columnNames = ['Repository', 'Open Issues'];
@@ -41,7 +42,7 @@ export class OpenIssuesComponent implements OnInit {
             repo.name,
             repo.open_issues_count]);
         });
-        this.ready = true;
+        this.loading = false;
       },
       (error) => {
         console.log(error);

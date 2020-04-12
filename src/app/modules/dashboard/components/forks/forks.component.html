@@ -1,12 +1,12 @@
 <div class="column" *ngIf="!loading; else loadingData">
   <div class="ui segment">
       <google-chart #chart
+        style="width: 100%;"
         [title]="title"
         [type]="type"
         [data]="data"
         [columnNames]="columnNames"
         [options]="options"
-        [width]="width"
         [height]="height"
         >
         </google-chart>

@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SuiModule } from 'ng2-semantic-ui';
 import { GoogleChartsModule } from 'angular-google-charts';
-import { OpenIssuesComponent } from './components/open-issues/open-issues.component';
 import { ForksComponent } from './components/forks/forks.component';
+import { OpenIssuesComponent } from './components/open-issues/open-issues.component';
 
 @NgModule({
-  declarations: [OpenIssuesComponent, ForksComponent],
+  declarations: [ForksComponent, OpenIssuesComponent],
   imports: [
     CommonModule,
     SuiModule,
     GoogleChartsModule.forRoot(),
   ],
-  exports: [ OpenIssuesComponent, ForksComponent ]
+  exports: [ ForksComponent, OpenIssuesComponent ]
 })
 export class DashboardModule { }

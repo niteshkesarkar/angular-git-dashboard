@@ -2,14 +2,18 @@
 <div class="ui container">
   <sui-tabset>
     <div class="ui top attached tabular menu">
-        <a class="item" suiTabHeader="forks">Forks</a>
-        <a class="item" suiTabHeader="OpenIssues">Open Issues</a>
+        <a class="item" suiTabHeader="1" (isActiveChange)="activeTab = 1;">Forks</a>
+        <a class="item" suiTabHeader="2" (isActiveChange)="activeTab = 2;">Open Issues</a>
     </div>
-    <div class="ui bottom attached segment" suiTabContent="forks">
-      <app-forks></app-forks>
+    <div class="ui bottom attached segment" suiTabContent="1">
+      <div *ngIf="activeTab === 1">
+        <app-forks></app-forks>
+      </div>
     </div>
-    <div class="ui bottom attached segment" suiTabContent="OpenIssues">
-      <app-open-issues></app-open-issues>
+    <div class="ui bottom attached segment" suiTabContent="2">
+      <div *ngIf="activeTab === 2">
+        <app-open-issues></app-open-issues>
+      </div>
     </div>
   </sui-tabset>
 </div>

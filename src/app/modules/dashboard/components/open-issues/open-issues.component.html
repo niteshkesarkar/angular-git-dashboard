@@ -1,14 +1,21 @@
-<div class="column" *ngIf="ready">
+<div class="column" *ngIf="!loading; else loadingData">
   <div class="ui segment">
       <google-chart #chart
+        style="width: 100%;"
         [title]="title"
         [type]="type"
         [data]="data"
         [columnNames]="columnNames"
         [options]="options"
-        [width]="width"
         [height]="height"
         >
         </google-chart>
   </div>
 </div>
+<ng-template class="ui container" #loadingData>
+  <div class="ui segment">
+    <sui-dimmer class="inverted" [(isDimmed)]="loading">
+      <div class="ui text loader">Fetching data from server!</div>
+    </sui-dimmer>
+  </div>
+</ng-template>

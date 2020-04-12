@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  activeTab = 'OpenIssues';
+  activeTab = 1;
+
   constructor() { }
 
 }
