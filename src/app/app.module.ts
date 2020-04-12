@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {SuiModule} from 'ng2-semantic-ui';
+import { SuiModule } from 'ng2-semantic-ui';
 import { RepositoriesComponent } from './components/repositories/repositories.component';
 import { PullRequestsComponent } from './components/pull-requests/pull-requests.component';
 import { IssuesComponent } from './components/issues/issues.component';
@@ -30,7 +30,7 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
     SuiModule,
     BrowserModule,
     AppRoutingModule,
-    DashboardModule
+    DashboardModule,
   ],
   providers: [ApiService, RepositoryService, DashboardService],
   bootstrap: [AppComponent]

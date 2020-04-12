@@ -1,6 +1,15 @@
 
 <div class="ui container">
-  <div class="ui one column stackable grid">
-    <app-open-issues></app-open-issues>
-  </div>
+  <sui-tabset>
+    <div class="ui top attached tabular menu">
+        <a class="item" suiTabHeader="forks">Forks</a>
+        <a class="item" suiTabHeader="OpenIssues">Open Issues</a>
+    </div>
+    <div class="ui bottom attached segment" suiTabContent="forks">
+      <app-forks></app-forks>
+    </div>
+    <div class="ui bottom attached segment" suiTabContent="OpenIssues">
+      <app-open-issues></app-open-issues>
+    </div>
+  </sui-tabset>
 </div>

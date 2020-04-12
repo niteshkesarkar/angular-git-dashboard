@@ -1,17 +1,19 @@
+
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from 'src/app/services';
 import { map, tap, take, filter } from 'rxjs/operators';
 import * as _ from 'lodash-es';
 
 @Component({
-  selector: 'app-open-issues',
-  templateUrl: './open-issues.component.html',
-  styleUrls: ['./open-issues.component.scss']
+  selector: 'app-forks',
+  templateUrl: './forks.component.html',
+  styleUrls: ['./forks.component.scss']
 })
-export class OpenIssuesComponent implements OnInit {
-  ready = false;
-  maxOpenIssues = 20;
-  title = `Repositories having more than ${this.maxOpenIssues} forks`;
+export class ForksComponent implements OnInit {
+
+  loading = true;
+  maxForks = 15;
+  title = `Repositories having more than ${this.maxForks} forks`;
   type = 'ColumnChart';
   data: any[] = [];
   columnNames: string[];
@@ -24,24 +26,24 @@ export class OpenIssuesComponent implements OnInit {
   ngOnInit() {
     this.dashbordService.getRepos().pipe(
       map(repos => {
-        return _.orderBy(repos, ['open_issues_count'], ['desc']);
+        return _.orderBy(repos, ['forks_count'], ['desc']);
       }),
       filter(repos => {
-        return _.remove(repos, (o) => o.open_issues_count === 0 || o.open_issues_count < this.maxOpenIssues);
+        return _.remove(repos, (o) => o.forks_count === 0 || o.forks_count < 15);
       }),
-      // tap(repos => {
-      //   console.log(repos);
-      //   return repos;
-      // })
+      tap(repos => {
+        console.log(repos);
+        return repos;
+      })
     ).subscribe(
       (result) => {
-        this.columnNames = ['Repository', 'Open Issues'];
+        this.columnNames = ['Repository', 'Forks'];
         _.map(result, (repo) => {
           this.data.push([
             repo.name,
-            repo.open_issues_count]);
+            repo.forks_count]);
         });
-        this.ready = true;
+        this.loading = false;
       },
       (error) => {
         console.log(error);
