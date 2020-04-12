@@ -1,13 +1,13 @@
-const express = require('express');
-const path = require('path');
+const express = require("express");
+const path = require("path");
 const app = express();
 
 // Serve static files....
-app.use(express.static(__dirname + '/dist/gitstat-angular'));
+app.use(express.static(__dirname + "/dist/gitdash"));
 
 // Send all requests to index.html
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/gitstat-angular/index.html'));
+app.get("/*", function(req, res) {
+  res.sendFile(path.join(__dirname + "/dist/gitdash/index.html"));
 });
 
 // default Heroku PORT
