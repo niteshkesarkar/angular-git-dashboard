@@ -1,21 +1,6 @@
 
-
-
-
-
-<div class="ui one column stackable grid">
-  <div class="column" *ngIf="ready">
-    <div class="ui segment">
-        <google-chart #chart
-          [title]="title"
-          [type]="type"
-          [data]="data"
-          [columnNames]="columnNames"
-          [options]="options"
-          [width]="width"
-          [height]="height"
-          >
-          </google-chart>
-    </div>
+<div class="ui container">
+  <div class="ui one column stackable grid">
+    <app-open-issues></app-open-issues>
   </div>
 </div>

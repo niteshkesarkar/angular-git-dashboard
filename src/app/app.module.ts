@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GoogleChartsModule } from 'angular-google-charts';
 
 import {SuiModule} from 'ng2-semantic-ui';
 import { RepositoriesComponent } from './components/repositories/repositories.component';
@@ -14,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiService, RepositoryService, DashboardService } from './services/index';
 import { EllipsisPipe } from './pipes/ellipsis.pipe';
 import { RepositoryDetailsComponent } from './components/repository-details/repository-details.component';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { RepositoryDetailsComponent } from './components/repository-details/repo
     SuiModule,
     BrowserModule,
     AppRoutingModule,
-    GoogleChartsModule.forRoot(),
+    DashboardModule
   ],
   providers: [ApiService, RepositoryService, DashboardService],
   bootstrap: [AppComponent]
