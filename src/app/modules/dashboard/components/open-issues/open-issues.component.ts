@@ -11,8 +11,8 @@ import * as _ from 'lodash-es';
 export class OpenIssuesComponent implements OnInit {
 
   loading = true;
-  maxOpenIssues = 15;
-  title = `Repositories having more than ${this.maxOpenIssues} open issues`;
+  maxOpenIssues = 0;
+  title = `Repositories Open Issues`;
   type = 'ColumnChart';
   data: any[] = [];
   columnNames: string[];
@@ -28,7 +28,7 @@ export class OpenIssuesComponent implements OnInit {
         return _.orderBy(repos, ['open_issues_count'], ['desc']);
       }),
       filter(repos => {
-        return _.remove(repos, (o) => o.open_issues_count === 0 || o.open_issues_count < 15);
+        return _.remove(repos, (o) => o.open_issues_count <= this.maxOpenIssues);
       }),
       tap(repos => {
         console.log(repos);

@@ -12,8 +12,8 @@ import * as _ from 'lodash-es';
 export class ForksComponent implements OnInit {
 
   loading = true;
-  maxForks = 15;
-  title = `Repositories having more than ${this.maxForks} forks`;
+  maxForks = 0;
+  title = `Repositories Forks`;
   type = 'ColumnChart';
   data: any[] = [];
   columnNames: string[];
@@ -29,7 +29,7 @@ export class ForksComponent implements OnInit {
         return _.orderBy(repos, ['forks_count'], ['desc']);
       }),
       filter(repos => {
-        return _.remove(repos, (o) => o.forks_count === 0 || o.forks_count < 15);
+        return _.remove(repos, (o) => o.forks_count <= this.maxForks);
       }),
       tap(repos => {
         console.log(repos);
