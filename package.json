@@ -37,7 +37,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "json-server": "^0.16.1",
-    "lodash-es": "^4.17.11",
+    "lodash-es": "^4.17.21",
     "ng2-semantic-ui": "^0.9.7",
     "path": "^0.12.7",
     "rxjs": "~6.3.3",
